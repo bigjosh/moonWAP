@@ -33,7 +33,10 @@ opkg install nodogsplash
   
 7. Enter the commands...
 
-  `wget -P /etc/nodogsplash/htdocs https://raw.githubusercontent.com/bigjosh/moonWAP/master/htdocs/splash.html`
+   ```
+opkg install wget
+wget -P /etc/nodogsplash/htdocs --no-check-certificate https://raw.githubusercontent.com/bigjosh/moonWAP/master/htdocs/splash.html
+```
 
   ...to download the HTML for the new splash page into the `nodogsplash` content directory
   
