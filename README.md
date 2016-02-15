@@ -44,8 +44,8 @@ wget -O /etc/nodogsplash/htdocs/splash.html --no-check-certificate https://raw.g
 
    ```
 opkg install unzip
-wget --no-check-certificate "https://github.com/bigjosh/moonWAP/releases/download/1.0/moongifs.zip" 
-unzip moongifs.zip -d /etc/nodogsplash/htdocs/images
+wget --no-check-certificate "https://github.com/bigjosh/moonWAP/releases/download/1.0/images.zip" 
+unzip images.zip -d /etc/nodogsplash/htdocs/
 ```
 
  ...to download the moonphase GIF images as a zip file and then decompress them into the `nodogsplash` content directory
