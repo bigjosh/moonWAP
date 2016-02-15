@@ -1,0 +1,85 @@
+<html>
+<head>
+	<title>$gatewayname Entry</title>
+	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	<style>
+		html, body, #wrapper {
+		   height:100%;
+		   width: 100%;
+		   margin: 0;
+		   padding: 0;
+		   border: 0;
+		}
+		#wrapper td {
+		   vertical-align: middle;
+		   text-align: center;
+		}	
+	</style>
+	
+      <script type="text/javascript">
+         <!--
+		 
+			var nextimg = null;
+		 
+			function loadimg() {
+				var str = "" + moonphase
+				var pad = "000"
+				var ans = pad.substring(0, pad.length - str.length) + str;
+				nextimg = new Image();
+				nextimg.src = '$imagesdir/m' + ans + '.gif';
+				console.log("loading "+moonphase);
+				console.log("nextimg.scr=" + nextimg.src );
+			}
+
+			function next(){
+				
+				imgObj = document.getElementById('moon_img');
+				
+				console.log("assigning from "+imgObj.src+" to "+nextimg.src);
+				imgObj.src = nextimg.src;
+				console.log("imObj.src=" +imgObj.src);
+				
+				//imgObj.alt = ""+moonphase +"/360"
+				
+				moonphase += 2;
+				if (moonphase > 360 ) {
+						moonphase = 0; 			   
+				}
+				
+				loadimg();
+				
+				setTimeout(next,1000); // update phase once per second
+            }
+		 
+			var moonphase=20;
+			loadimg();
+		 
+            setTimeout(next,1000); // update phase once per second
+                        
+
+         //-->
+      </script>	
+	
+</head>
+<body bgcolor="#000000" text="#555555">
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%" id="wrapper">
+<tr>
+	<td>
+	<!--
+		A client is authenticated by requesting the page $authtarget.
+		So, href to it here, with an img or link text the user can click on.
+		Also, note that any images you reference must reside in the
+		subdirectory that is the value of $imagesdir (default: "images").
+	-->
+	<a href="$authtarget">
+	<img src="$imagesdir/m000.gif" border="0"
+		alt="Click to enter" title="Click to enter" id="moon_img">
+	</a>
+	</td>
+</tr>
+</table>
+
+</body>
+
+</html>
