@@ -31,11 +31,11 @@ opkg install nodogsplash
 ```
   ...to install the nodogsplash package and enable it to run automatically on boot
   
-7. Enter the command...
+7. Enter the commands...
 
   `wget -P /etc/nodogsplash/htdocs https://raw.githubusercontent.com/bigjosh/moonWAP/master/htdocs/splash.html`
 
-  ...to download the HTML for the new splash page into the `nodogsplash` content directory.
+  ...to download the HTML for the new splash page into the `nodogsplash` content directory
   
 8. Enter the commands...
 
@@ -57,18 +57,21 @@ uci commit
 
   ...to set the new SSID and clear the Wifi access password
  
-9. Enter `reboot` to reboot router and start nodogsplash with the new moonphase splash page!
+9. Enter `reboot` to reboot router and start nodogsplash with (hopefully) the new moonphase splash page!
 
-Router should now serve the moon splash page to new connections. Next you probably want to connect to the router over Wifi and navigate to the setup pages at...
+## Change SSID
+
+To change the SSID, connect to the router over Wifi and navigate to the setup pages at...
 
 http://192.168.8.1
 
 ...and go to `Advanced Settings` and set...
 
-Network->wifi->settings->Wireless Security->Encryption->No Encryption 
-
-...and...
-
 Network->wifi->settings->General Setup->ESSID to the new SSID (with emoji!) 
 
 ...and then hit the "Save and Apply" button
+
+## TODO
+
+* Figure out a way to modulate the AP signal strength or bandwith based on moonphase
+* Install [Weaved](http://weaved.com/) or some other system so the box can be maintained and updated remotely
