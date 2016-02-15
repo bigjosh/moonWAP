@@ -26,7 +26,7 @@
 				var pad = "000"
 				var ans = pad.substring(0, pad.length - str.length) + str;
 				nextimg = new Image();
-				nextimg.src = '$imagesdir/Moon/m' + ans + '.gif';
+				nextimg.src = '$imagesdir/m' + ans + '.gif';
 				console.log("loading "+moonphase);
 				console.log("nextimg.scr=" + nextimg.src );
 			}
@@ -73,7 +73,7 @@
 		subdirectory that is the value of $imagesdir (default: "images").
 	-->
 	<a href="$authtarget">
-	<img src="$imagesdir/Moon/m000.gif" border="0"
+	<img src="$imagesdir/m000.gif" border="0"
 		alt="Click to enter" title="Click to enter" id="moon_img">
 	</a>
 	</td>
