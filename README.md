@@ -16,8 +16,8 @@ http://tegabrain.com/
 
 ## Setup
 
-1. Press and hold the reset button for 8 seconds to reboot the router to factory default state.
-2. Wait for the AP to come back up and connect to it.
+1. Press and hold the reset button for 8 seconds to reboot the router to factory default state
+2. Wait for the AP to come back up and connect to it over Wifi
 3. Navigate to 192.168.8.1
 4. Set new password
 5. Wait for the AP to come back up and connect to it with the new password
@@ -33,7 +33,7 @@ opkg install nodogsplash
   
 7. Enter the command...
 
-  `wget -P /etc/nodogsplash/htdocs http://github/`
+  `wget -P /etc/nodogsplash/htdocs https://raw.githubusercontent.com/bigjosh/moonWAP/master/htdocs/splash.html`
 
   ...to download the HTML for the new splash page into the `nodogsplash` content directory.
   
@@ -45,5 +45,30 @@ wget "http://tycho.usno.navy.mil/gif/Moon.zip"
 unzip Moon.zip -d /etc/nodogsplash/htdocs/images
 ```
 
- ...to download the moonphase GIF images as a zip file and then decompress them into the `nodosplash` content directory. 
-9. Enter `reboot` to reboot router and start nodogsplash
+ ...to download the moonphase GIF images as a zip file and then decompress them into the `nodogsplash` content directory
+ 
+9.  Enter the commands...  
+
+   ```
+uci set wireless.@wifi-iface[0].ssid="$(echo -ne 'Moonphase \xf0\x9f\x8c\x99 WAP')"
+uci set wireless.@wifi-iface[0].encryption=none
+uci commit
+```
+
+  ...to set the new SSID and clear the Wifi access password
+ 
+9. Enter `reboot` to reboot router and start nodogsplash with the new moonphase splash page!
+
+Router should now serve the moon splash page to new connections. Next you probably want to connect to the router over Wifi and navigate to the setup pages at...
+
+http://192.168.8.1
+
+...and go to `Advanced Settings` and set...
+
+Network->wifi->settings->Wireless Security->Encryption->No Encryption 
+
+...and...
+
+Network->wifi->settings->General Setup->ESSID to the new SSID (with emoji!) 
+
+...and then hit the "Save and Apply" button
