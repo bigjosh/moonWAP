@@ -17,7 +17,7 @@ http://tegabrain.com/
 ## Setup
 
 1. Press and hold the reset button for 8 seconds to reboot the router to factory default state
-2. Wait for the AP to come back up and connect to it over Wifi
+2. Wait for the AP to come back up and connect to it over Wifi (default password is "goodlife")
 3. Navigate to 192.168.8.1
 4. Set new password
 5. Wait for the AP to come back up and connect to it with the new password
@@ -27,7 +27,7 @@ http://tegabrain.com/
   ```
 opkg update
 opkg install nodogsplash
-./init.d/nodogsplash enable
+/etc/init.d/nodogsplash enable
 ```
   ...to install the nodogsplash package and enable it to run automatically on boot
   
