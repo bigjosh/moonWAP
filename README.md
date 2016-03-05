@@ -103,9 +103,5 @@ crontab newchrontab.txt
 
 ## TODO
 
-* Figure out a way to modulate the AP signal strength or bandwith based on moonphase
-* Install [Weaved](http://weaved.com/) or some other system so the box can be maintained and updated remotely
-
- /usr/bin/weavedConnectd -f /etc/weaved/ssh.linino.conf -d
- 
+* Use CGI to dynmically generate the splash pages so no files are ever updated while running. This will save the flash memory from wear. 
  
