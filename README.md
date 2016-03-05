@@ -62,6 +62,24 @@ uci commit
  
 9. Enter `reboot` to reboot router and start nodogsplash with (hopefully) the new moonphase splash page!
 
+## Enable Weaved for remote SSH access
+
+1. Get and install the `Weaved` tarball...
+
+  ```
+   wget -O https://github.com/weaved/installer/raw/master/binaries/weaved-OpenWRT-9331-0.94.tar`
+   tar -xvf weaved-OpenWRT-9331-0.94.tar
+   cd weaved
+   ./install.sh
+   rm /etc/init.d/weavedWEB
+  ```
+  
+  Note this assumes you have installed the full `wget` with SSH support above.
+  Note that we are disabling the WEB proxy since we only care about SSH access.
+  
+2. Log into the Weaved website and wait for this new machine to show up under services. 
+
+ 
 ## Change SSID
 
 To change the SSID, connect to the router over Wifi and navigate to the setup pages at...
