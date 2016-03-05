@@ -74,7 +74,19 @@ Network->wifi->settings->General Setup->ESSID to the new SSID (with emoji!)
 
 ...and then hit the "Save and Apply" button
 
+## Autoupdate
+
+chmod +x /etc/updatemoon.sh
+
+echo "* * * * * /etc/updatemoon.sh" >>newchrontab.txt
+crontab newchrontab.txt
+ 
+
 ## TODO
 
 * Figure out a way to modulate the AP signal strength or bandwith based on moonphase
 * Install [Weaved](http://weaved.com/) or some other system so the box can be maintained and updated remotely
+
+ /usr/bin/weavedConnectd -f /etc/weaved/ssh.linino.conf -d
+ 
+ 
