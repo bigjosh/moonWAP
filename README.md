@@ -28,8 +28,9 @@ http://tegabrain.com/
 opkg update
 opkg install nodogsplash
 /etc/init.d/nodogsplash enable
+opkg install bc
 ```
-  ...to install the nodogsplash package and enable it to run automatically on boot
+  ...to install the nodogsplash package and enable it to run automatically on boot. Also installs `bc` which lets us do a little math to compute the moon phases.
   
 7. Enter the commands...
 
