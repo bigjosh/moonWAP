@@ -3,6 +3,7 @@
 	<title>$gatewayname Entry</title>
 	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<META HTTP-EQUIV="refresh" CONTENT="60">
 	
 	<style>
 	
