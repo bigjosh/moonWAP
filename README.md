@@ -28,41 +28,20 @@ http://tegabrain.com/
 opkg update
 opkg install nodogsplash
 /etc/init.d/nodogsplash enable
-opkg install bc
+opkg install wget
 ```
-  ...to install the nodogsplash package and enable it to run automatically on boot. Also installs `bc` which lets us do a little math to compute the moon phases.
+  ...to install the nodogsplash package and enable it to run automatically on boot. Also installs the full `wget` which lets us download from github over https. 
   
 7. Enter the commands...
 
    ```
-opkg install wget
-wget -O /etc/nodogsplash/htdocs/splash.html --no-check-certificate https://raw.githubusercontent.com/bigjosh/moonWAP/master/htdocs/splash.html
+opkg install git
+git clone 
+chmod +x install.sh
+./install.sh
 ```
-
-  ...to download the HTML for the new splash page into the `nodogsplash` content directory
+  ...to download and install the `moonWAP` configuration.
   
-8. Enter the commands...
-
-   ```
-opkg install unzip
-wget --no-check-certificate "https://github.com/bigjosh/moonWAP/releases/download/1.0/images.zip" 
-unzip images.zip -d /etc/nodogsplash/htdocs/
-```
-
- ...to download the moonphase GIF images as a zip file and then decompress them into the `nodogsplash` content directory
- 
-9.  Enter the commands...  
-
-   ```
-uci set wireless.@wifi-iface[0].ssid="$(echo -ne 'Moonphase \xf0\x9f\x8c\x99 WAP')"
-uci set wireless.@wifi-iface[0].encryption=none
-uci commit
-```
-
-  ...to set the new SSID and clear the Wifi access password
- 
-9. Enter `reboot` to reboot router and start nodogsplash with (hopefully) the new moonphase splash page!
-
 ## Enable Weaved for remote SSH access
 
 1. Get and install the `Weaved` tarball...
@@ -80,28 +59,4 @@ uci commit
   
 2. Log into the Weaved website and wait for this new machine to show up under services. 
 
- 
-## Change SSID
-
-To change the SSID, connect to the router over Wifi and navigate to the setup pages at...
-
-http://192.168.8.1
-
-...and go to `Advanced Settings` and set...
-
-Network->wifi->settings->General Setup->ESSID to the new SSID (with emoji!) 
-
-...and then hit the "Save and Apply" button
-
-## Autoupdate
-
-chmod +x /etc/updatemoon.sh
-
-echo "* * * * * /etc/updatemoon.sh" >>newchrontab.txt
-crontab newchrontab.txt
- 
-
-## TODO
-
-* Use CGI to dynmically generate the splash pages so no files are ever updated while running. This will save the flash memory from wear. 
  
