@@ -1,0 +1,59 @@
+<html>
+<head>
+	<title>$gatewayname Entry</title>
+	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<style>
+	
+		html {
+			height: 100%;
+		}
+	
+		body
+		{
+			font-family: sans-serif;
+			font-size: 100%;
+			margin: 10px;
+		}
+
+		@media screen and (orientation: portrait) {
+		  img.ri {
+			  max-width: 90%;
+		  }
+		}
+
+		@media screen and (orientation: landscape) {
+		  img.ri {
+			  max-height: 90%;
+		  }
+		}	
+	
+	</style>
+		
+</head>
+<body bgcolor="#000000" text="#555555" style="height:90%;">
+
+	<table border="0" cellpadding="2" cellspacing="0" style="width: 100%; height: 100%; vertical-align: middle;" id="wrapper">
+		<tr valign="middle">
+			<td  style="text-align: center; vertical-align: middle; horizontal-align: center;">
+				<!--
+					A client is authenticated by requesting the page $authtarget.
+					So, href to it here, with an img or link text the user can click on.
+					Also, note that any images you reference must reside in the
+					subdirectory that is the value of $imagesdir (default: "images").
+				-->
+				<a href="$authtarget" style="text-decoration: none;" >
+					<img src="images/moon-~MP_IMAGE~.png" border="0"
+						alt="Click to enter" title="Click to enter" 
+						style="max-width:80%; max-height:60%; "
+						class="moon">
+				</a>
+				<BR>
+				<pre>SIGNAL STRENGTH: ~MP_PERCENT~ AND ~MP_DIRECTION~</pre>			
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>
