@@ -59,4 +59,10 @@ chmod +x install.sh
   
 2. Log into the Weaved website and wait for this new machine to show up under services. 
 
+## TODO
+
+1. Right now nodogsplash does not do anything to DNS rerquests, so the access point *must* have an internet connection or else the initial probe will fail and the user will not see the login screen. Might be nice to catch these DNS requests and serve them locally. 
+2. Might be nice to animate the moon and signal strength localy in javascript.
+3. 
+
  
