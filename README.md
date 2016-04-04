@@ -28,15 +28,14 @@ http://tegabrain.com/
 opkg update
 opkg install nodogsplash
 /etc/init.d/nodogsplash enable
-opkg install wget
 ```
-  ...to install the nodogsplash package and enable it to run automatically on boot. Also installs the full `wget` which lets us download from github over https. 
+  ...to install the nodogsplash package and enable it to run automatically on boot. 
   
 7. Enter the commands...
 
    ```
 opkg install git
-git clone 
+git clone git://github.com/bigjosh/moonWAP.git
 chmod +x install.sh
 ./install.sh
 ```
@@ -47,15 +46,14 @@ chmod +x install.sh
 1. Get and install the `Weaved` tarball...
 
   ```
-   wget -O https://github.com/weaved/installer/raw/master/binaries/weaved-OpenWRT-9331-0.94.tar`
+   wget -O git://github.com/weaved/installer/raw/master/binaries/weaved-OpenWRT-9331-0.94.tar`
    tar -xvf weaved-OpenWRT-9331-0.94.tar
    cd weaved
    ./install.sh
    rm /etc/init.d/weavedWEB
   ```
-  
-  Note this assumes you have installed the full `wget` with SSH support above.
-  Note that we are disabling the WEB proxy since we only care about SSH access.
+
+  Note that we are disabling the Weaved WEB proxy since we only care about SSH access.
   
 2. Log into the Weaved website and wait for this new machine to show up under services. 
 
@@ -63,6 +61,3 @@ chmod +x install.sh
 
 1. Right now nodogsplash does not do anything to DNS rerquests, so the access point *must* have an internet connection or else the initial probe will fail and the user will not see the login screen. Might be nice to catch these DNS requests and serve them locally. 
 2. Might be nice to animate the moon and signal strength localy in javascript.
-3. 
-
- 
