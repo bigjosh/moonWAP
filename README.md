@@ -22,10 +22,25 @@ http://tegabrain.com/
 4. Set new password
 5. Wait for the AP to come back up and connect to it with the new password
 6. SSH to 192.168.8.1 and log in with the new password
-7. Enter these commands...  
+7. Enter this command...  
 
   ```
 opkg update
+``` 
+
+  ... to get the package manager ready for the installs we are about to do.
+
+7. Enter this command...  
+
+  ```
+opkg install wireless-tools
+``` 
+
+  ... to get the `iwconfig` command that we will use to dynamically adjust the wifi signal strength. (I know we should be able to use just `iw`, but it doens't seem to work.)
+
+8. Enter these comands...
+
+  ```
 opkg install nodogsplash
 /etc/init.d/nodogsplash enable
 ```
