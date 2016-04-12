@@ -31,18 +31,18 @@ opkg install nodogsplash
 ```
   ...to install the nodogsplash package and enable it to run automatically on boot. 
   
-7. Enter the commands...
+7. Copy the contents of `/etc` of this repo to the `/etc` directory on the device. I use SCP. 
 
-   ```
-opkg install git
-git clone git://github.com/bigjosh/moonWAP.git
+8. Run the install script...
+
+  ```
+cd /etc/moonWap
 chmod +x install.sh
 ./install.sh
 ```
-  ...to download and install the `moonWAP` configuration.
+  ...to install the `moonWAP` configuration.
   
-## Enable Weaved for remote SSH access
-
+## Enable Weaved for remote SSH access (optional)
 1. Get and install the `Weaved` tarball...
 
   ```
@@ -59,5 +59,5 @@ chmod +x install.sh
 
 ## TODO
 
-1. Right now nodogsplash does not do anything to DNS rerquests, so the access point *must* have an internet connection or else the initial probe will fail and the user will not see the login screen. Might be nice to catch these DNS requests and serve them locally. 
+1. Right now nodogsplash does not do anything to DNS requests, so the access point *must* have an internet connection or else the initial probe will fail and the user will not see the login screen. Might be nice to catch these DNS requests and serve them locally. 
 2. Might be nice to animate the moon and signal strength localy in javascript.
