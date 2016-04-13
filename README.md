@@ -8,7 +8,7 @@ This wireless access point is influenced by the phase of the moon. It acts as a 
 
 [![Android splash](screenshots/thumbs/android-splash.jpg)](screenshots/android-splash.png)
 
-[![IOS splash](screenshots/thumbs/ios-splash.png)]((screenshots/thumbs/ios-splash.png))
+[![IOS splash](screenshots/thumbs/ios-splash.jpg)](screenshots/ios-splash.png))
 
 Wireless parameters reflect the current moon phase....
 
