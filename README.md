@@ -4,13 +4,13 @@ A moon-phase-driven captive portal created by Tega Brain...
 
 http://tegabrain.com/
 
-This wireless access point in influenced by the phase of the moon. It acts as a captive portal and shows moon-phase information on the mandatory signon screen...
+This wireless access point is influenced by the phase of the moon. It acts as a captive portal and shows moon-phase information on the mandatory signon screen...
 
-![Android splash](screenshots/android-splash.png)
+[![Android splash](screenshots/thumbs/android-splash.jpg)](screenshots/android-splash.png)
 
-![IOS splash](screenshots/ios-splash.jpg)
+[![IOS splash](screenshots/thumbs/ios-splash.png)]((screenshots/thumbs/ios-splash.png))
 
-Wireless parameters reflect the current phase....
+Wireless parameters reflect the current moon phase....
 
 * signal power waxes and wanes between [full strength 15dBm at New Moon](screenshots/new.png) and [barely connectible 0dBm at Full Moon](screenshots/full.png)
 * SSID adapts to show an apropriate unicode moon emodicon
