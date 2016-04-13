@@ -31,7 +31,7 @@ sectimenow=$(date -d "$1" +%s)
 secsinceNew=$((  sectimenow - secnewmoon  ))
 daysinceNew=$(( secsinceNew / ( 60 * 60 * 24 ) ))
 
-echo "It has been $secsinceNew seconds (~$daysinceNew dayss) since recent new moon"
+echo "It has been $secsinceNew seconds (~$daysinceNew days) since recent new moon"
 
 # Compute current phase (0=New, 0.5 * lunarMonth=Full)
 secinPhase=$(( secsinceNew % seclunarMonthLen ))
