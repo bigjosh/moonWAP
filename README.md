@@ -6,9 +6,7 @@ http://tegabrain.com/
 
 This wireless access point is influenced by the phase of the moon. It acts as a captive portal and shows moon-phase information on the mandatory signon screen...
 
-[![Android splash](screenshots/thumbs/android-splash.jpg)](screenshots/android-splash.png)
-
-[![IOS splash](screenshots/thumbs/ios-splash.jpg)](screenshots/ios-splash.png))
+[![Android splash](screenshots/thumbs/android-splash.jpg)](screenshots/android-splash.png) [![IOS splash](screenshots/thumbs/ios-splash.jpg)](screenshots/ios-splash.png))
 
 Wireless parameters reflect the current moon phase....
 
