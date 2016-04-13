@@ -1,9 +1,11 @@
 #!/bin/sh
 
+
 # update to a new moonpase
 # pass in the time to update in the format "YYYY-MM-DD hh:mm:ss" (or just "YYYY-MM-DD") (returned by date %s)
+# requires splash.template file to be in the same directory
 
-when=`date -d $1 +'%Y-%m-%d %H:%M:%S'`
+when=`date -d "$1" "+%Y-%m-%d %H:%M:%S"`
 echo "Calcuilating moon phase for $when"
 
 # Start with the time of a recent known new moon (got from http://astro.ukho.gov.uk/moonwatch/ )
@@ -44,112 +46,97 @@ echo "Curently day $moonDay of 30 in lunar month"
 
 if [ $moonDay -le 1 ]   || [ $moonDay -ge  29 ]; then
     ssid="\xf0\x9f\x8c\x91"
+    image="moon-0000.jpg"
     name="NEW MOON"
     qos="100%"
     power="15"
 elif [ $moonDay -le 5 ]; then
     ssid="\xf0\x9f\x8c\x92"
+    image="moon-0035.jpg"    
     name="WAXING CRESCENT"
     qos="75% AND WANING"
     power="13"
 elif [ $moonDay -le 9 ]; then
     ssid="\xf0\x9f\x8c\x93"
+    image="moon-0044.jpg"    
     name="FIRST QUARTER"
     qos="50% AND WANING"
     power="8"
 elif [ $moonDay -le 13 ]; then
     ssid="\xf0\x9f\x8c\x94"
+    image="moon-0060.jpg"    
     name="WAXING GIBBOUS"
     qos="25% AND WANING"
     power="3"
 elif [ $moonDay -le 16 ]; then
     ssid="\xf0\x9f\x8c\x95"
+    image="moon-0076.jpg"    
     name="FULL MOON"
     qos="0%"
     power="0"
 elif [ $moonDay -le 20 ]; then
     ssid="\xf0\x9f\x8c\x96"
+    image="moon-0120.jpg"
     name="WANING GIBBOUS"
     qos="25% AND WAXING"
     power="3"
 elif [ $moonDay -le 24 ]; then
     ssid="\xf0\x9f\x8c\x97"
+    image="moon-0135.jpg"    
     name="LAST QUARTER"
     qos="50% AND WAXING"
     power="8"
 else
     ssid="\xf0\x9f\x8c\x98"
+    image="moon-0147.jpg"
     name="WANING CRESCENT"
     qos="75% AND WAXING"
     power="12"
 fi
 
-
 echo -e "SSID = $ssid"    
 echo "Name = $name" 
+echo "Image = $image"
 echo "QOS = $qos"
 echo "Power= $power of 15"
 
-return
+## Set the TX powerupdate, which rises and falls over the cycle
+
+iwconfig wlan0 txpower "$((power))dBm"
 
 ## Update the SSID. 
 
-# Convert the phase into on of the 
-ssidStep
+# Convert new ssid to unicode
+newssid="$(echo -e $ssid)"
+currentssid=$(uci get wireless.@wifi-iface[0].ssid)
 
-# This nasty mess computes the UNICODE chars for the moon phases. Each 4 bytes is one char (total of 8) and there are 9 of them (we only use the 1st 8)
-moonString="\xF0\x9F\x8C\x91\xF0\x9F\x8C\x92\xF0\x9F\x8C\x93\xF0\x9F\x8C\x94\xF0\x9F\x8C\x95\xF0\x9F\x8C\x96\xF0\x9F\x8C\x97\xF0\x9F\x8C\x98"
-moonChar=`echo $moonString | cut -b $(( ( (moonStep / 2 ) * 16) + 1 ))-$(( ( (moonStep / 2) * 16 ) + 16 ))`
-
-# There are only 8 steps, so we only need to change on even stpes
-# it is good to not change redundantly becuase we will boot any connected stations 
-
-if [[ $(( ( $moonStep / 2 ) * 2 )) -eq $moonStep ]]; 
-then
-	# The echo -e decodes the hex string into an actual unicode char
-	uci set wireless.@wifi-iface[0].ssid="$(echo -e $moonChar)"
+# don't up/down the interface unless the ssid actually changed to avoid kicking people off
+if [ "$newssid" != "$currentssid" ]; then
+	uci set wireless.@wifi-iface[0].ssid="$newssid"
+    uci set wireless.@wifi-iface[0].txpower="$((power))dBm"
 	uci commit wireless
 	/sbin/wifi down
 	/sbin/wifi up
+    echo "Wifi interface reset to enable new SSID"
+    # seems like there must be a delay before changing txpower
+    sleep 2
 fi
 
 ## Set the TX powerupdate, which rises and falls over the cycle
+# note that it seem that you must set txpower AFTER down/up
 
-if [[ $moonStep -le 8 ]]; then moonPower=$(( ( $moonStep * 2 ) ))
-else moonPower=$((  ( ( 16 - $moonStep ) * 2 ) )) 
-fi
-
-iwconfig  wlan0 txpower "$moonPower"dbm
+iwconfig wlan0 txpower "$((power))dBm"
 
 
 ## Now make the new splash page HTML using our template
 #Find a better way someday since constantly overwriting the splash page will
 #wear the flash memmory. Maybe serve from /tmp, or generate on the fly?
 
-# There are 16 steps and 54 images...
-moonImage=$(( ( moonStep * 54 ) / 16 ))
-
-# Calculate the signal strenght with rises for the first half of cycle then falls for the rest
-
-if [[ $moonStep -le 8 ]]; then moonPercent=$(( ( $moonStep * 100 ) / 8 ))
-else moonPercent=$(( ( ( 16 - $moonStep ) * 100 ) / 8 ))
-fi
-
-if [[ $moonStep -eq 0 ]]; then moonDirection="NEW"
-elif [[ $moonStep -lt 8 ]]; then moonDirection="WAXING"
-elif [[ $moonStep -eq 8 ]]; then moonDirection="FULL"
-else  moonDirection="WANING"
-fi
-
 # Substutite the real-time values into the splash.html template
 
-sed -e "s/~MP_IMAGE~/$moonImage/g" \
-    -e "s/~MP_PERCENT~/$moonPercent/g" \
-    -e "s/~MP_DIRECTION~/$moonDirection/g" \
-	/etc/moonWAP/splash.template >/etc/nodogsplash/htdocs/splash.html
+sed -e "s/~MP_IMAGE~/$image/g" \
+    -e "s/~MP_PHASE~/$name/g" \
+    -e "s/~MP_QOS~/$qos/g" \
+	$(dirname $0)/splash.template >/etc/nodogsplash/htdocs/splash.html
 
-cat /etc/nodogsplash/htdocs/splash.html
 
-echo moonStep=$moonStep
-echo moonPower=$moonPower
-echo moonChar=$moonChar

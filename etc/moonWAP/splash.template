@@ -45,13 +45,19 @@
 					subdirectory that is the value of $imagesdir (default: "images").
 				-->
 				<a href="$authtarget" style="text-decoration: none;" >
-					<img src="images/moon-~MP_IMAGE~.png" border="0"
+					<img src="$imagesdir/~MP_IMAGE~" border="0"
 						alt="Click to enter" title="Click to enter" 
 						style="max-width:80%; max-height:60%; "
 						class="moon">
 				</a>
-				<BR>
-				<pre>SIGNAL STRENGTH: ~MP_PERCENT~ AND ~MP_DIRECTION~</pre>			
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <center>
+                    LUNAR PHASE: ~MP_PHASE~<br>
+                    QUALITY OF SERVICE: ~MP_QOS~
+                </center>
 			</td>
 		</tr>
 	</table>

@@ -1,9 +1,22 @@
 # moonWAP
-Setup instructions for a moon-phase-driven captive portal
 
-Project created by Tega Brain...
+A moon-phase-driven captive portal created by Tega Brain...
 
 http://tegabrain.com/
+
+This wireless access point in influenced by the phase of the moon. It acts as a captive portal and shows moon-phase information on the mandatory signon screen...
+
+![Android splash](screenshots/android-splash.png)
+
+![IOS splash](screenshots/ios-splash.jpg)
+
+Wireless parameters reflect the current phase....
+
+* signal power waxes and wanes between [full strength 15dBm at New Moon](screenshots/new.png) and [barely connectible 0dBm at Full Moon](screenshots/full.png)
+* SSID adapts to show an apropriate unicode moon emodicon
+
+
+# Setup Instructions 
 
 ## Assumes
 
