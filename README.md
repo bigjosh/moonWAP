@@ -21,7 +21,7 @@ http://tegabrain.com/
 3. Navigate to 192.168.8.1
 4. Set new password
 5. Wait for the AP to come back up and connect to it with the new password
-6. If you want this to be an open access point, remove Wifi securityunder Advanced Settings->Network>-Wifi->Edit->Wireless Security->Encryption->No Encryption. Be sure to hit "Save & Apply".
+6. If you want this to be an open access point, remove Wifi security under `Advanced Settings->Network>-Wifi->Edit->Wireless Security->Encryption->No Encryption`. Be sure to hit `Save & Apply`.
 6. SSH to 192.168.8.1 and log in with the new password
 7. Enter this command...  
 
@@ -57,6 +57,8 @@ chmod +x install.sh
 ./install.sh
 ```
   ...to install the `moonWAP` configuration.
+  
+9. Reboot to start `nodogsplash`.
   
 ## Enable Weaved for remote SSH access (optional)
 1. Get and install the `Weaved` tarball...
