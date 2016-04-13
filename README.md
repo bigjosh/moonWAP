@@ -32,7 +32,6 @@ Wireless parameters reflect the current moon phase....
 3. Navigate to 192.168.8.1
 4. Set new password
 5. Wait for the AP to come back up and connect to it with the new password
-6. If you want this to be an open access point, remove Wifi security under `Advanced Settings->Network>-Wifi->Edit->Wireless Security->Encryption->No Encryption`. Be sure to hit `Save & Apply`.
 6. SSH to 192.168.8.1 and log in with the new password
 7. Enter this command...  
 
@@ -70,8 +69,16 @@ chmod +x install.sh
   ...to install the `moonWAP` configuration.
   
 9. Reboot to start `nodogsplash`.
-  
-## Enable Weaved for remote SSH access (optional)
+
+## Optional configuration
+
+### Remove the wifi password to make an open-access hot spot
+
+2. Connect to the device over Wifi using the password you set above
+3. Navigate to 192.168.8.1
+6. Remove Wifi security under `Advanced Settings->Network>-Wifi->Edit->Wireless Security->Encryption->No Encryption`. Be sure to hit `Save & Apply`.
+
+### Enable Weaved for remote SSH access 
 1. Get and install the `Weaved` tarball...
 
   ```
@@ -84,9 +91,61 @@ chmod +x install.sh
 
   Note that we are disabling the Weaved WEB proxy since we only care about SSH access.
   
-2. Log into the Weaved website and wait for this new machine to show up under services. 
+2. Log into the Weaved website and wait for this new machine to show up under services.   
 
-## TODO
+### Nodogsplash tuning
+
+There follwing parameters in the `/etc/nodogsplash/nodogsplash.conf` file might be relevant...
+
+#### MaxClients
+Default: 20
+
+Set MaxClients to the maximum number of users allowed to
+connect at any time. (Does not include users on the TrustedMACList,
+who do not authenticate.)
+
+#### ClientIdleTimeout
+Default: 10
+
+Set ClientIdleTimeout to the desired of number of minutes
+of inactivity before a user is automatically 'deauthenticated'.
+ 
+#### ClientForceTimeout
+Default: 360
+ 
+Set ClientForceTimeout to the desired number of minutes before
+a user is automatically 'deauthenticated', whether active or not
+
+# Operation
+ Once the device boots up, it will create a wifi network. The SSID will be a little picture of the moon and will corespond to the current phase. 
+ 
+ Upon connecting to the wifi network, you should automatically see a splash screen with the current status of the access point. Click on the moon image to gain access to the internet.
+ 
+ The router automatically updates the moon phase parameters each night at midnight. You will need to reconnect to the new SSID if it changes to a new emoticon durring the update. 
+ 
+ You can check the details of the most recent moonphase calculation by connecting and then browsing to...
+ 
+ http://192.168.8.1:2050/pages/mooncalc.html
+ 
+ ..which will show something like...
+ 
+   ```
+ Calcuilating moon phase for 2016-04-13 22:06:46
+Recent new moon was at 2016-03-09 01:24:00
+Current lunar cycle lenth is 2551442 seconds (~29 days)
+It has been 3098566 seconds (~35 dayss) since recent new moon
+We are 547124 seconds (~6 days) into the current lunar cycle
+Curently day 6 of 30 in lunar month
+SSID = ð
+Name = FIRST QUARTER
+Image = moon-0044.jpg
+QOS = 50% AND WANING
+Power= 8 of 15
+```
+
+Note that the SSID uses emoji unicodes which seem to be displayed correctly when in SSIDs but do not display as glyphs inside HTML documents in browsers at the moment. 
+ 
+# TODO
 
 1. Right now nodogsplash does not do anything to DNS requests, so the access point *must* have an internet connection or else the initial probe will fail and the user will not see the login screen. Might be nice to catch these DNS requests and serve them locally. 
 2. Might be nice to animate the moon and signal strength localy in javascript.
