@@ -79,18 +79,27 @@ chmod +x install.sh
 6. Remove Wifi security under `Advanced Settings->Network>-Wifi->Edit->Wireless Security->Encryption->No Encryption`. Be sure to hit `Save & Apply`.
 
 ### Enable Weaved for remote SSH access 
-1. Get and install the `Weaved` tarball...
 
+Note that this process is slightly more complicated than it needs to be since GitHub only allows HTTPS access and our distributtion does not have an HTTPS capable client. 
+
+1. Get the Weaved OpenWRT tarball from here...
+
+  `https://github.com/weaved/installer/tree/master/binaries`
+
+  ...and download it to the box (I use WinSCP to copy it). 
+
+2. Unpack the tarball and install...
   ```
-   wget -O git://github.com/weaved/installer/raw/master/binaries/weaved-OpenWRT-9331-0.94.tar`
    tar -xvf weaved-OpenWRT-9331-0.94.tar
    cd weaved
    ./install.sh
-   rm /etc/init.d/weavedWEB
   ```
 
-  Note that we are disabling the Weaved WEB proxy since we only care about SSH access.
-  
+3. Optionally disable the `http` tunnel since we won't need it.
+  ```
+rm /etc/init.d/weavedWEB
+```
+ 
 2. Log into the Weaved website and wait for this new machine to show up under services.   
 
 ### Nodogsplash tuning
